@@ -1,0 +1,16 @@
+{
+    "name": "luannsr12/sdkcorreios",
+    "description": "Sdk correios",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Sdkcorreios\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Luan Alves"
+        }
+    ],
+    "require": {}
+}
