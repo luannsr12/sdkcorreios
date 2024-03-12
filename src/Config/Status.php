@@ -130,6 +130,10 @@ class Status
                 $status = Status::STATUS_POSTED;
                 break;
 
+           case 'Objeto postado após o horário limite da unidade':
+                    $status = Status::STATUS_POSTED;
+                    break;
+    
             case 'Objeto recebido na unidade de distribuição':
                 $status = Status::STATUS_DISTRUBTION;
                 break;

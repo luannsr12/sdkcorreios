@@ -9,30 +9,33 @@
 Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
 ## 💡 Requirements
-
-The SDK Supports PHP version 8.2 or higher.
+> The SDK Supports PHP version 8.2 or higher.
 
 <br/>
 
-Sites Disponiveis para busca
+## 🖥️ Sites Disponiveis para busca
+> Caso algum dos sites listados abaixo deseja a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
 
-| Site                       | Status  | Name |
-| -------------------------- | :---:   | -------------------|
-| encomenda.io               |  ✅    | EncomendaIo         |
-| melhorrastreio.com.br      |  ✅    | MelhorRastreio      |
-| rastreadordepacotes.com.br |  ✅    | RastreadorDePacotes |
-| rastreamentocorreio.com    |  ✅    | RastreamentoCorreio |
-| muambator.com.br           |  ✅    | Muambator           |
-| rastreiocorreios.com.br    |  ✅    | RastreioCorreios    |
+| Status  | Site                                                                   | ID                   |
+| :---:   | ---------------------------------------------------------------------- | ---------------------|
+|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | EncomendaIo         |
+|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/)                 | MelhorRastreio      |
+|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | RastreadorDePacotes |
+|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | RastreamentoCorreio |
+|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
+|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | RastreioCorreios    |
+|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
 
-Install Composer
+## Install Composer
+> Fala download do composer aqui: [Download composer](https://getcomposer.org/download/)
 
+linha de comando
 ```bash
  composer require luannsr12/sdkcorreios
 ```
 
 
-Using
+## Usando
 
 ```php
  <?php 
@@ -43,8 +46,8 @@ Using
    use Sdkcorreios\Methods\Tracking;
 
    // RastreadorDePacotes / EncomendaIo / MelhorRastreio / etc... 
-   // Confira na tabela os nomes das classes
-   Services::setServiceTracking("MelhorRastreio"); // Site que o sdk irá fazer a busca
+   // Confira na tabela os IDs das classes
+   Services::setServiceTracking("MelhorRastreio"); // ID do site de busca
    Services::setDebug(true);
 
    $tracking = new Tracking();
