@@ -8,13 +8,14 @@
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
-use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
 class Muambator
 {
 
     private $api_url = "https://www.muambator.com.br/pacotes/{code}/detalhes/";
+
+    private $service_provider = "www.muambator.com.br";
 
     private function setStatus($string, $error = false)
     {
@@ -144,7 +145,7 @@ class Muambator
 
             $response_obj["code"]   = $code;
             $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle);
-            
+            $response_obj["service_provider"] = $this->service_provider;
             
             foreach ($items as $i => $item) {
               

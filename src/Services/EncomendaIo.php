@@ -8,13 +8,14 @@
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
-use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
 class EncomendaIo
 {
 
     private $api_url = "https://encomenda.io/api/tracking/";
+
+    private $service_provider = "encomenda.io";
 
     private function setStatus($string, $error = false)
     {
@@ -136,6 +137,7 @@ class EncomendaIo
 
             $response_obj["code"] = $code;
             $response_obj["status"] = empty($decode->data->tracking) ? $this->setStatus("", true) : $this->setStatus($decode->data->tracking[0]->status);
+            $response_obj["service_provider"] = $this->service_provider;
 
             foreach ($decode->data->tracking as $key => $mov) {
 

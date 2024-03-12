@@ -10,13 +10,14 @@
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
-use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
 class RastreadorDePacotes
 {
 
     private $api_url = "https://www.rastreadordepacotes.com.br/rastreio/";
+
+    private $service_provider = "www.rastreadordepacotes.com.br";
 
     private function setStatus($string, $error = false)
     {
@@ -190,6 +191,7 @@ class RastreadorDePacotes
 
 
                     $response_obj["status"] = empty($decode->Posicoes) ? $this->setStatus("", true) : $this->setStatus($decode->Posicoes[0]->Acao);
+                    $response_obj["service_provider"] = $this->service_provider;
 
                     foreach ($decode->Posicoes as $key => $mov) {
 

@@ -8,13 +8,14 @@
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
-use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
 class RastreioCorreios
 {
 
     private $api_url = "https://rastreiocorreios.com.br/resultado/?rastreio={code}";
+
+    private $service_provider = "rastreiocorreios.com.br";
 
     private function setStatus($string, $error = false)
     {
@@ -140,7 +141,7 @@ class RastreioCorreios
 
             $response_obj["code"]   = $code;
             $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle);
-            
+            $response_obj["service_provider"] = $this->service_provider;
             
             foreach ($items as $i => $item) {
               

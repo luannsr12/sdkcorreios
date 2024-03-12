@@ -8,7 +8,6 @@
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
-use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
 class RastreamentoCorreio
@@ -16,6 +15,8 @@ class RastreamentoCorreio
 
     private $api_url = "https://rastreamentocorreio.com/pesquisa?codigo=";
 
+    private $service_provider = "rastreamentocorreio.com";
+    
     private function setStatus($string, $error = false)
     {
         return $error ? Status::getStatus("") : Status::getStatus($string);
@@ -167,7 +168,8 @@ class RastreamentoCorreio
 
                 $response_obj["code"]   = $code;
                 $response_obj["status"] = empty($decode[0]->title) ? $this->setStatus("", true) : $this->setStatus($decode[0]->title);
-
+                $response_obj["service_provider"] = $this->service_provider;
+                
                 foreach ($decode as $key => $mov) {
 
                     $mov = (object)$mov;

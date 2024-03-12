@@ -15,6 +15,7 @@ class MelhorRastreio
 
     private $api_url = "https://api.melhorrastreio.com.br/graphql";
 
+    private $service_provider = "api.melhorrastreio.com.br";
 
     private function setStatus($string, $error = false)
     {
@@ -120,6 +121,7 @@ class MelhorRastreio
 
             $response_obj["code"] = $code;
             $response_obj["status"] = empty($decode->data->result->trackingEvents) ? $this->setStatus("", true) : $this->setStatus($decode->data->result->trackingEvents[0]->originalTitle);
+            $response_obj["service_provider"] = $this->service_provider;
 
             foreach ($decode->data->result->trackingEvents as $key => $mov) {
 

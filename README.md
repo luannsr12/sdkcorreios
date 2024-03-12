@@ -60,6 +60,7 @@ Response
     {
       "code": "QQ781772845BR",
       "status": "DELIVERED",
+      "service_provider": "rastreiocorreios.com.br",
       "data": [
         {
           "date": "05-03-2024 12:54:09",

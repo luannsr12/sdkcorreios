@@ -11,6 +11,7 @@ class FormatResponse
         $this->formatTracking = [
             "code" => "",
             "status" => "",
+            "service_provider" => "",
             "data" =>  []
         ];
     }
