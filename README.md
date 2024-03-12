@@ -1,8 +1,11 @@
 # SDK Correios Tracking 1.0.6
 
+[![Latest Stable Version](http://poser.pugx.org/luannsr12/sdkcorreios/v/stable)](https://packagist.org/packages/luannsr12/sdkcorreios)
 [![](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg?style=flat-square)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
 [![](https://badges.pufler.dev/updated/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
 [![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
+[![PHP Version Require](http://poser.pugx.org/luannsr12/sdkcorreios/require/php)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![Downloads](http://poser.pugx.org/luannsr12/sdkcorreios/downloads)](https://packagist.org/packages/luannsr12/sdkcorreios)
 
 ### Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
