@@ -45,6 +45,9 @@ Using
    $tracking->setCode("OBJETO1");
    $tracking->setCode("OBJETO2");
 
+   // OR
+   // $tracking->setCode("OBJETO1,OBJETO2");
+
    echo json_encode($tracking->get());
 
 
