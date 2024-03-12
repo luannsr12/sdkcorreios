@@ -5,6 +5,17 @@
 [![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
 
 
+Sites Disponiveis para busca
+
+| Site                       | Status  | Name |
+| :-----:                    | :---:   | :---: |
+| encomenda.io               |  ✅    | EncomendaIo |
+| melhorrastreio.com.br      |  ✅    | MelhorRastreio |
+| rastreadordepacotes.com.br |  ✅    | RastreadorDePacotes |
+| rastreamentocorreio.com    |  ✅    | RastreamentoCorreio |
+
+
+
 ```bash
  composer require luannsr12/sdkcorreios
 ```
@@ -32,12 +43,44 @@
 
 ```
 
-Sites Disponiveis para busca
+Response
 
-| Site                       | Status  | Name |
-| :-----:                    | :---:   | :---: |
-| encomenda.io               |  ✅    | EncomendaIo |
-| melhorrastreio.com.br      |  ✅    | MelhorRastreio |
-| rastreadordepacotes.com.br |  ✅    | RastreadorDePacotes |
-| rastreamentocorreio.com    |  ✅    | RastreamentoCorreio |
+```json
+ {
+  "success": true,
+  "result": [
+    {
+      "code": "QQ781772845BR",
+      "status": "DELIVERED",
+      "data": [
+        {
+          "date": "05-03-2024 12:54:09",
+          "to": "",
+          "from": "PORTO ALEGRE - RS",
+          "location": "PORTO ALEGRE - RS",
+          "originalTitle": "Objeto entregue ao destinatário",
+          "details": "Objeto entregue ao destinatário"
+        },
+        {
+          "date": "05-03-2024 10:41:25",
+          "to": "PORTO ALEGRE - RS",
+          "from": "PORTO ALEGRE - RS",
+          "location": "PORTO ALEGRE - RS",
+          "originalTitle": "Objeto saiu para entrega ao destinatário",
+          "details": "Objeto saiu para entrega ao destinatário"
+        },
+        ....
+        {
+          "date": "29-02-2024 15:48:50",
+          "to": "JOINVILLE - SC",
+          "from": "JOINVILLE - SC",
+          "location": "JOINVILLE - SC",
+          "originalTitle": "Objeto postado",
+          "details": "Objeto postado"
+        }
+      ]
+    }
+  ]
+}
 
+```
