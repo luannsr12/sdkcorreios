@@ -38,14 +38,14 @@ Using
 
    // RastreadorDePacotes / EncomendaIo / MelhorRastreio / etc... 
    // Confira na tabela os nomes das classes
-   Services::setServiceTracking("RastreadorDePacotes"); // Site que o sdk irá fazer a busca
+   Services::setServiceTracking("MelhorRastreio"); // Site que o sdk irá fazer a busca
    Services::setDebug(true);
 
    $tracking = new Tracking();
    $tracking->setCode("OBJETO1");
    $tracking->setCode("OBJETO2");
 
-   var_dump($tracking->get());
+   echo json_encode($tracking->get());
 
 
 

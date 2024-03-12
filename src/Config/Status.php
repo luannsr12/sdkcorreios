@@ -138,6 +138,10 @@ class Status
                 $status = Status::STATUS_STOLEN;
                 break;
 
+            case 'Objeto encaminhado':
+                $status = Status::STATUS_MOVEMENT;
+                break;
+
             case 'Objeto saiu para entrega ao remetente':
                 $status = Status::STATUS_OUT_DELIVERY;
                 break;
