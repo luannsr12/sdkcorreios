@@ -17,7 +17,8 @@
    use Sdkcorreios\Config\Services;
    use Sdkcorreios\Methods\Tracking;
 
-   // RastreadorDePacotes / EncomendaIo / MelhorRastreio
+   // RastreadorDePacotes / EncomendaIo / MelhorRastreio / etc... 
+   // Confira na tabela os nomes das classes
    Services::setServiceTracking("RastreadorDePacotes"); // Site que o sdk irá fazer a busca
    Services::setDebug(true);
 
