@@ -16,7 +16,7 @@ Sites Disponiveis para busca
 | melhorrastreio.com.br      |  ✅    | MelhorRastreio      |
 | rastreadordepacotes.com.br |  ✅    | RastreadorDePacotes |
 | rastreamentocorreio.com    |  ✅    | RastreamentoCorreio |
-
+| muambator.com.br           |  ✅    | Muambator           |
 
 
 Install Composer

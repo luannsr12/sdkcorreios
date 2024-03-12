@@ -62,6 +62,10 @@ class Status
             case 'Objeto entregue ao destinatário':
                 $status = Status::STATUS_DELIVERED;
                 break;
+                
+            case 'Entrega Efetuada':
+                $status = Status::STATUS_DELIVERED;
+                break;
 
             case 'A entrega não pode ser efetuada - Carteiro não atendido':
                 $status = Status::STATUS_NOBODYHOME;
