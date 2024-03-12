@@ -7,6 +7,10 @@
         "psr-4": {
             "Sdkcorreios\\": "src/"
         }
+    }, 
+    "require": {
+        "php": ">=8.2",
+        "ext-spl": "*"
     },
     "authors": [
         {
