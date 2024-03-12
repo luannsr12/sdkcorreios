@@ -14,13 +14,7 @@
 
     public static bool $debug = false;
 
-    public const STATUS_DELIVERED = "DELIVERED";
-
-    public const STATUS_MOVEMENT = "MOVEMENT";
-
-    public const STATUS_NOTFOUND = "NOTFOUND";
-
-
+    
     public function __construct( ){
       
     }

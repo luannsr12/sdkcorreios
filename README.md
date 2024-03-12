@@ -4,11 +4,8 @@
 [![](https://badges.pufler.dev/updated/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
 [![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
 
-<br/>
-
 ### Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
-<br/>
 <br/>
 
 Sites Disponiveis para busca
@@ -94,3 +91,30 @@ Response
 }
 
 ```
+
+Status
+
+| Status             | Description |
+| :-----:            | :---: |
+| DELIVERED          | Objeto entregue ao destinatário |
+| NOBODYHOME         | Carteiro não atendido |
+| MOVEMENT           | Objeto em transferência - por favor aguarde |
+| OUT_DELIVERY       | Objeto saiu para entrega ao remetente |
+| DELIVERY_FAILURE   | A entrega não pode ser efetuada |
+| REFUSED_RECEIVE    | Cliente recusou-se a receber |
+| UNKNOWN_CUSTOMER   | Cliente desconhecido no local |
+| CUSTOMER_MOVED     | Cliente mudou-se |
+| NO_IDENTIFICATION  | Destinatário não apresentou documento exigido |
+| NEW_TRY            | Será feita uma nova tentativa de entrega |
+| RETURN_SENDER      | Objeto será devolvido ao remetente |
+| WAITING_WITHDRAWAL | Objeto aguardando retirada no endereço indicado |
+| LATE               | Objeto com atraso na entrega |
+| RETURN             | Objeto devolvido ao remetente |
+| MAILBOX            | Objeto disponível para retirada em Caixa Postal |
+| NOTFOUND           | Objeto não localizado |
+| LOST               | Objeto Extraviado |
+| POSTED             | Objeto postado |
+| DISTRUBTION        | Objeto recebido na unidade de distribuição |
+| RECEIVED_BRAZIL    | Objeto recebido no Brasil |
+| STOLEN             | Objeto roubado |
+
