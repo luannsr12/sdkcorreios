@@ -62,7 +62,7 @@ class Status
             case 'Objeto entregue ao destinatário':
                 $status = Status::STATUS_DELIVERED;
                 break;
-                
+
             case 'Entrega Efetuada':
                 $status = Status::STATUS_DELIVERED;
                 break;
@@ -159,6 +159,10 @@ class Status
                 break;
 
             case 'Objeto em transferência - por favor aguarde':
+                $status = Status::STATUS_MOVEMENT;
+                break;
+                
+            case 'Em trânsito para Unidade de Distribuição':
                 $status = Status::STATUS_MOVEMENT;
                 break;
 
