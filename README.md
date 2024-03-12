@@ -4,8 +4,13 @@
 [![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
 [![PHP Version Require](http://poser.pugx.org/luannsr12/sdkcorreios/require/php)](https://packagist.org/packages/luannsr12/sdkcorreios)
 [![Downloads](http://poser.pugx.org/luannsr12/sdkcorreios/downloads)](https://packagist.org/packages/luannsr12/sdkcorreios)
+ [![License](https://poser.pugx.org/luannsr12/sdkcorreios/license)](https://packagist.org/packages/luannsr12/sdkcorreios)
 
-### Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
+Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
+
+## 💡 Requirements
+
+The SDK Supports PHP version 8.2 or higher.
 
 <br/>
 
