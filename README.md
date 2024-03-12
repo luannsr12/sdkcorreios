@@ -1,4 +1,5 @@
 # SDK Correios Tracking 1.0.4
+### Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
 [![](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg?style=flat-square)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
 [![](https://badges.pufler.dev/updated/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
