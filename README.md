@@ -27,13 +27,12 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 |   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
 
 ## Install Composer
-> Fala download do composer aqui: [Download composer](https://getcomposer.org/download/)
+> Faça download do composer aqui: [Download composer](https://getcomposer.org/download/)
 
 linha de comando
 ```bash
  composer require luannsr12/sdkcorreios
 ```
-
 
 ## Usando
 
