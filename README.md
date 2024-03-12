@@ -57,18 +57,10 @@ linha de comando
    // $tracking->setCode("OBJETO1,OBJETO2");
    
    if(Services::$success){
-
       echo json_encode($tracking->get());
-
    }else{
-
       var_dump(Services::getMessageError()); 
-      
    }
-
-
-
-
 
 
 ```
