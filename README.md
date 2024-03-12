@@ -16,9 +16,14 @@ Sites Disponiveis para busca
 
 
 
+Install Composer
+
 ```bash
  composer require luannsr12/sdkcorreios
 ```
+
+
+Using
 
 ```php
  <?php 
@@ -69,7 +74,6 @@ Response
           "originalTitle": "Objeto saiu para entrega ao destinatário",
           "details": "Objeto saiu para entrega ao destinatário"
         },
-        ....
         {
           "date": "29-02-2024 15:48:50",
           "to": "JOINVILLE - SC",
