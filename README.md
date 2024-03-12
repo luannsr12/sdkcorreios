@@ -1,4 +1,4 @@
-# SDK Correios Tracking 1.0.7
+# SDK Correios Tracking 1.0.8
 
 [![Latest Stable Version](http://poser.pugx.org/luannsr12/sdkcorreios/v/stable)](https://packagist.org/packages/luannsr12/sdkcorreios)
 [![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
