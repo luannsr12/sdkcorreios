@@ -115,6 +115,9 @@ class MelhorRastreio
                 throw new \Exception($decode->errors[0]->details[0]);
             }
 
+            if(!isset($decode->data->result->trackingEvents)){
+                throw new \Exception('Not found');
+            }
 
             $formatResponse = new FormatResponse();
             $response_obj = $formatResponse->formatTracking;

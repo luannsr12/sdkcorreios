@@ -19,6 +19,10 @@
       
     }
 
+    public static function getMessageError(){
+        return self::$message_error;
+    }
+
     public static function setServiceTracking($service){
       
       if(!in_array($service, self::$list)){
