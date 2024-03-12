@@ -17,7 +17,7 @@ Sites Disponiveis para busca
 | rastreadordepacotes.com.br |  ✅    | RastreadorDePacotes |
 | rastreamentocorreio.com    |  ✅    | RastreamentoCorreio |
 | muambator.com.br           |  ✅    | Muambator           |
-
+| rastreiocorreios.com.br    |  ✅    | RastreioCorreios    |
 
 Install Composer
 

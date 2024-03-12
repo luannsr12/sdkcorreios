@@ -1,12 +1,12 @@
 <?php 
 
   namespace Sdkcorreios\Config;
-
+  
   class Services
   {
     public static string $service;
 
-    public static array $list = ["MelhorRastreio", "EncomendaIo", "RastreadorDePacotes", "RastreamentoCorreio", "Muambator"];
+    public static array $list = ["MelhorRastreio", "EncomendaIo", "RastreadorDePacotes", "RastreamentoCorreio", "Muambator", "RastreioCorreios"];
 
     public static bool $success = true;
 

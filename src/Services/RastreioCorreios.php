@@ -1,7 +1,7 @@
 <?php
 
 /*
- *  https://www.muambator.com.br
+ *  https://rastreiocorreios.com.br
  *
  */
 
@@ -11,16 +11,15 @@ use Sdkcorreios\Config\FormatResponse;
 use Sdkcorreios\Config\Services;
 use Sdkcorreios\Config\Status;
 
-class Muambator
+class RastreioCorreios
 {
 
-    private $api_url = "https://www.muambator.com.br/pacotes/{code}/detalhes/";
+    private $api_url = "https://rastreiocorreios.com.br/resultado/?rastreio={code}";
 
     private function setStatus($string, $error = false)
     {
         return $error ? Status::getStatus("") : Status::getStatus($string);
     }
-
 
     public function tracking($codes)
     {
@@ -65,13 +64,12 @@ class Muambator
 
     private function getCity($string){
         $city = "";
-        preg_match('/(?:\s-\s|\spara\s)([A-Z\s]+\/[A-Z]+)\b/', $string, $matches);
+        preg_match('/(?: - |:\s)([A-Z\s]+(?:\/[A-Z]+)?)\b/', $string, $matches);
         if (isset($matches[1])) {
             $city = strtoupper($matches[1]);
         }
         return $city;
     }
-
     private function getElementsByClass(&$parentNode, $tagName, $className)
     {
         $nodes = array();
@@ -121,7 +119,7 @@ class Muambator
             $response = curl_exec($curl);
             curl_close($curl);
 
-            $html = explode('<div role="tabpanel" class="tab-pane fade in active" id="historico">', $response);
+            $html = explode('<div class="historic__content">', $response);
             $html = explode('</ul>', $html[1]);
 
             $dom = new \DOMDocument();
@@ -132,13 +130,11 @@ class Muambator
             $lastTitle = "";
 
             foreach ($items as $item) {
-                $content = $item->nodeValue;
-                $content = explode("\n", $content);
-                $content = array_values(array_filter($content));
-                $lastTitle = trim(explode("-", $content[1])[0]);
-                break;
+                 $conts     = $item->getElementsByTagName('p');
+                 $lastTitle = $conts->item(1)->nodeValue;
+                 break;
             }
-        
+ 
             $formatResponse = new FormatResponse();
             $response_obj = $formatResponse->formatTracking;
 
@@ -148,25 +144,22 @@ class Muambator
             
             foreach ($items as $i => $item) {
               
-                $content = $item->nodeValue;
-                $content = explode("\n", $content);
+                $conts = $item->getElementsByTagName('p');
 
-                $content = array_values(array_filter($content));
-
-                $to     = $this->getCity($content[1]);
-                $locale = $this->getCity($content[2]);
-               
-                $date = isset($content[0]) ? $content[0] : '';
+                $date = $conts->item(0)->nodeValue;
                 $date_format = \DateTime::createFromFormat('d/m/Y H:i:s', $date);
                 $date_format = $date_format ? $date_format->format('d-m-Y H:i:s') : $date;
 
+                $locale = $this->getCity($conts->item(2)->nodeValue);
+                
+
                 array_push($response_obj["data"], [
                     "date" => $date_format,
-                    "to" => $to,
+                    "to" => '',
                     "from" => $locale,
                     "location" => $locale,
-                    "originalTitle" => trim(explode("-", $content[1])[0]),
-                    "details" => $content[2]
+                    "originalTitle" => isset($conts->item(1)->nodeValue) ? $conts->item(1)->nodeValue : "",
+                    "details" => isset($conts->item(3)->nodeValue) ? $conts->item(2)->nodeValue : ""
                 ]);
 
             }
