@@ -1,5 +1,12 @@
 <?php
 
+
+/*
+ *  https://www.rastreadordepacotes.com.br
+ *
+ */
+
+
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
@@ -26,7 +33,7 @@ class RastreadorDePacotes
         }
 
         if ($indice == count($data) - 1) {
-            if(isset(explode('para', $data[$indice]['DetalhesFormatado'])[1])){
+            if (isset(explode('para', $data[$indice]['DetalhesFormatado'])[1])) {
                 return trim(@explode('para', $data[$indice]['DetalhesFormatado'])[1]);
             }
             return "";
@@ -35,14 +42,14 @@ class RastreadorDePacotes
         for ($i = $indice + 1; $i < count($data); $i++) {
 
             if ($data[$i]['DetalhesFormatado'] != $data[$indice]['DetalhesFormatado']) {
-                if(isset(explode('para', $data[$i]['DetalhesFormatado'])[1])){
+                if (isset(explode('para', $data[$i]['DetalhesFormatado'])[1])) {
                     return trim(@explode('para', $data[$i]['DetalhesFormatado'])[1]);
                 }
                 return "";
             }
         }
 
-        if(isset(explode('para', $data[$indice]['DetalhesFormatado'])[1])){
+        if (isset(explode('para', $data[$indice]['DetalhesFormatado'])[1])) {
             return trim(@explode('para', $data[$indice]['DetalhesFormatado'])[1]);
         }
 
@@ -151,13 +158,13 @@ class RastreadorDePacotes
             $response = curl_exec($curl);
             curl_close($curl);
 
-            $html =  explode('<div id="appRastrearPacote">', $response );
+            $html = explode('<div id="appRastrearPacote">', $response);
 
-            $html = str_replace('<script>','', $html[1]);
-            $html = str_replace('var pacote = ','', $html);
+            $html = str_replace('<script>', '', $html[1]);
+            $html = str_replace('var pacote = ', '', $html);
             $html = explode('</script>', $html);
 
-            $response = (string)rtrim(trim(strip_tags($html[0])), ';');
+            $response = (string) rtrim(trim(strip_tags($html[0])), ';');
 
             if (!json_decode($response)) {
                 throw new \Exception('Json invalid response');
@@ -165,9 +172,9 @@ class RastreadorDePacotes
 
             $decode = json_decode($response);
 
-            $response_obj["code"]   = $code;
+            $response_obj["code"] = $code;
 
-            if(!isset($decode->Posicoes)){
+            if (!isset($decode->Posicoes)) {
                 $response_obj["status"] = $this->setStatus("", true);
             }
 
@@ -175,31 +182,31 @@ class RastreadorDePacotes
                 $response_obj["status"] = $this->setStatus("", true);
             }
 
-            if(isset($decode->Posicoes)){
-                if(count($decode->Posicoes) > 0){
+            if (isset($decode->Posicoes)) {
+                if (count($decode->Posicoes) > 0) {
 
                     $formatResponse = new FormatResponse();
                     $response_obj = $formatResponse->formatTracking;
-        
-                    
+
+
                     $response_obj["status"] = empty($decode->Posicoes) ? $this->setStatus("", true) : $this->setStatus($decode->Posicoes[0]->Acao);
-        
+
                     foreach ($decode->Posicoes as $key => $mov) {
-        
+
                         $from = $this->getLocale(json_encode($decode->Posicoes), $key);
                         $to = $this->getLocaleTo(json_encode($decode->Posicoes), $key);
-        
+
                         array_push($response_obj["data"], [
                             "date" => date("m-d-Y H:i:s", strtotime($mov->Data)),
                             "to" => $to,
                             "from" => $from,
                             "location" => $to,
                             "originalTitle" => $mov->Acao,
-                            "details" => str_replace(["\n\r"], ' - ',$mov->DetalhesFormatado)
+                            "details" => str_replace(["\n\r"], ' - ', $mov->DetalhesFormatado)
                         ]);
-        
+
                     }
-        
+
                 }
             }
 

@@ -6,7 +6,7 @@
   {
     public static string $service;
 
-    public static array $list = ["MelhorRastreio", "EncomendaIo", "RastreadorDePacotes"];
+    public static array $list = ["MelhorRastreio", "EncomendaIo", "RastreadorDePacotes", "RastreamentoCorreio"];
 
     public static bool $success = true;
 

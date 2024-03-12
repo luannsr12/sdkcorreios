@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * https://encomenda.io
+ *
+ */
+
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
@@ -11,31 +16,33 @@ class EncomendaIo
 
     private $api_url = "https://encomenda.io/api/tracking/";
 
-    private function setStatus($string, $error=false){
+    private function setStatus($string, $error = false)
+    {
         return $error ? Status::getStatus("") : Status::getStatus($string);
     }
 
-    public function getLocale($json, $indice){
+    public function getLocale($json, $indice)
+    {
 
         $data = json_decode($json, true);
-        
+
         if ($indice < 0 || $indice >= count($data['tracking'])) {
             return "Índice inválido";
         }
-    
+
         if ($indice == count($data['tracking']) - 1) {
             return $data['tracking'][$indice]['locale'];
         }
-    
+
         for ($i = $indice + 1; $i < count($data['tracking']); $i++) {
 
             if ($data['tracking'][$i]['locale'] != $data['tracking'][$indice]['locale']) {
                 return $data['tracking'][$i]['locale'];
             }
         }
-    
+
         return $data['tracking'][$indice]['locale'];
-        
+
     }
 
     public function tracking($codes)
@@ -118,7 +125,7 @@ class EncomendaIo
             }
 
             $decode = json_decode($response);
- 
+
             if (isset($decode->errors)) {
                 throw new \Exception($decode->errors[0]->details[0]);
             }
@@ -127,7 +134,7 @@ class EncomendaIo
             $formatResponse = new FormatResponse();
             $response_obj = $formatResponse->formatTracking;
 
-            $response_obj["code"]   = $code;
+            $response_obj["code"] = $code;
             $response_obj["status"] = empty($decode->data->tracking) ? $this->setStatus("", true) : $this->setStatus($decode->data->tracking[0]->status);
 
             foreach ($decode->data->tracking as $key => $mov) {
@@ -137,7 +144,7 @@ class EncomendaIo
                 array_push($response_obj["data"], [
                     "date" => date("m-d-Y H:i:s", strtotime($mov->date)),
                     "to" => $mov->locale,
-                    "from" =>  $from,
+                    "from" => $from,
                     "location" => $mov->locale,
                     "originalTitle" => $mov->status,
                     "details" => $mov->status
