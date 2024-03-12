@@ -2,7 +2,6 @@
     "name": "luannsr12/sdkcorreios",
     "description": "Sdk correios",
     "type": "library",
-    "version": "1.0.7",
     "license": "MIT",
     "autoload": {
         "psr-4": {
