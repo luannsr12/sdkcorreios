@@ -8,18 +8,6 @@
 [![GitHub Forks](https://img.shields.io/github/forks/luannsr12/sdkcorreios.svg?style=social&label=Fork)](https://github.com/luannsr12/sdkcorreios)
 [![Contributors](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
 
-<<<<<<< HEAD
-=======
-[![Latest Stable Version](https://img.shields.io/packagist/v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![Total Downloads](https://img.shields.io/packagist/dt/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![PHP Version](https://img.shields.io/packagist/php-v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![License](https://img.shields.io/packagist/l/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![GitHub Stars](https://img.shields.io/github/stars/luannsr12/sdkcorreios.svg?style=social&label=Star)](https://github.com/luannsr12/sdkcorreios)
-[![GitHub Forks](https://img.shields.io/github/forks/luannsr12/sdkcorreios.svg?style=social&label=Fork)](https://github.com/luannsr12/sdkcorreios)
-[![Contributors](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
-
->>>>>>> d540a1171b3a4767dcbc24271dff0873898b42c5
-
 Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
 ## 💡 Requirements
