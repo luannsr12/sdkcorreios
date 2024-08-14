@@ -16,7 +16,7 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 <br/>
 
 ## 🖥️ Sites Disponiveis para busca
-> Caso algum dos sites listados abaixo deseja a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
+> Se algum dos sites listados abaixo desejar ser removido da biblioteca, por favor, entre em contato pelo e-mail: luanalvesnsr@gmail.com.
 
 ```bash
 EncomendaIo, MelhorRastreio, RastreadorDePacotes, RastreamentoCorreio, Muambator, RastreioCorreios, LinkCorreios
