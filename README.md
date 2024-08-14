@@ -16,18 +16,19 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
 <br/>
 
-## 🖥️ Sites Disponiveis para busca
-> Caso algum dos sites listados abaixo deseja a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
+## 🖥️ Sites Disponíveis para Busca
+> Caso algum dos sites listados abaixo deseje a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
 
-| Status  | Site                                                                   | ID                   |
-| :---:   | ---------------------------------------------------------------------- | ---------------------|
-|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | EncomendaIo         |
-|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/)                 | MelhorRastreio      |
-|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | RastreadorDePacotes |
-|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | RastreamentoCorreio |
-|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
-|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | RastreioCorreios    |
-|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
+| Status | Site                                                              | ID                   |
+| ------ | ----------------------------------------------------------------- | --------------------- |
+| ✅     | [encomenda.io](https://encomenda.io/OBJETO)                       | EncomendaIo          |
+| ✅     | [melhorrastreio.com.br](https://melhorrastreio.com.br/)           | MelhorRastreio       |
+| ✅     | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/) | RastreadorDePacotes |
+| ✅     | [rastreamentocorreio.com](https://rastreamentocorreio.com/)       | RastreamentoCorreio  |
+| ✅     | [muambator.com.br](https://www.muambator.com.br/)                 | Muambator            |
+| ✅     | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)       | RastreioCorreios     |
+| ✅     | [linkcorreios.com.br](https://www.linkcorreios.com.br/)           | LinkCorreios         |
+
 
 ## Install Composer
 > Faça download do composer aqui: [Download composer](https://getcomposer.org/download/)
