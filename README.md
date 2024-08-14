@@ -16,31 +16,18 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
 <br/>
 
-## 🖥️ Sites Disponíveis para Busca
-> Caso algum dos sites listados abaixo deseje a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
+## 🖥️ Sites Disponiveis para busca
+> Caso algum dos sites listados abaixo deseja a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
 
-**Sites Ativos:**
-
-1. **[encomenda.io](https://encomenda.io/OBJETO)**  
-   **ID:** EncomendaIo
-
-2. **[melhorrastreio.com.br](https://melhorrastreio.com.br/)**  
-   **ID:** MelhorRastreio
-
-3. **[rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)**  
-   **ID:** RastreadorDePacotes
-
-4. **[rastreamentocorreio.com](https://rastreamentocorreio.com/)**  
-   **ID:** RastreamentoCorreio
-
-5. **[muambator.com.br](https://www.muambator.com.br/)**  
-   **ID:** Muambator
-
-6. **[rastreiocorreios.com.br](https://rastreiocorreios.com.br/)**  
-   **ID:** RastreioCorreios
-
-7. **[linkcorreios.com.br](https://www.linkcorreios.com.br/)**  
-   **ID:** LinkCorreios
+| Status  | Site                                                                   | ID                   |
+| :---:   | ---------------------------------------------------------------------- | ---------------------|
+|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | EncomendaIo         |
+|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/)                 | MelhorRastreio      |
+|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | RastreadorDePacotes |
+|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | RastreamentoCorreio |
+|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
+|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | RastreioCorreios    |
+|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
 
 
 ## Install Composer
