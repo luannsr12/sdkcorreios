@@ -1,10 +1,13 @@
 # SDK Correios Tracking 1.0.9
 
-[![Latest Stable Version](http://poser.pugx.org/luannsr12/sdkcorreios/v/stable)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
-[![PHP Version Require](http://poser.pugx.org/luannsr12/sdkcorreios/require/php)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![Downloads](http://poser.pugx.org/luannsr12/sdkcorreios/downloads)](https://packagist.org/packages/luannsr12/sdkcorreios)
- [![License](https://poser.pugx.org/luannsr12/sdkcorreios/license)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![Latest Stable Version](https://img.shields.io/packagist/v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![Total Downloads](https://img.shields.io/packagist/dt/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![PHP Version](https://img.shields.io/packagist/php-v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![License](https://img.shields.io/packagist/l/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![GitHub Stars](https://img.shields.io/github/stars/luannsr12/sdkcorreios.svg?style=social&label=Star)](https://github.com/luannsr12/sdkcorreios)
+[![GitHub Forks](https://img.shields.io/github/forks/luannsr12/sdkcorreios.svg?style=social&label=Fork)](https://github.com/luannsr12/sdkcorreios)
+[![Contributors](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
+
 
 Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
