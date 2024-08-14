@@ -15,7 +15,7 @@ use Sdkcorreios\Config\Status;
 class RastreadorDePacotes
 {
 
-    private $api_url = "https://www.rastreadordepacotes.com.br/rastreio/";
+    private $api_url = "https://api.rastreadordepacotes.com.br/rastreio/";
 
     private $service_provider = "www.rastreadordepacotes.com.br";
 
@@ -145,27 +145,24 @@ class RastreadorDePacotes
                     CURLOPT_RETURNTRANSFER => true,
                     CURLOPT_ENCODING => '',
                     CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_TIMEOUT => 30, // Ajuste o tempo de timeout conforme necessário
                     CURLOPT_FOLLOWLOCATION => true,
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'GET',
                     CURLOPT_POSTFIELDS => '',
                     CURLOPT_HTTPHEADER => array(
-                        'Content-Type: application/json'
+                        'Content-Type: application/json',
+                        'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
+                        'Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+                        'Accept-Language: en-US,en;q=0.5',
+                        'Connection: keep-alive',
+                        'Referer: https://api.rastreadordepacotes.com.br', // Substitua com o referer desejado
+                        'Origin: https://api.rastreadordepacotes.com.br'   // Substitua com o origin desejado
                     ),
                 )
             );
-
+            
             $response = curl_exec($curl);
-            curl_close($curl);
-
-            $html = explode('<div id="appRastrearPacote">', $response);
-
-            $html = str_replace('<script>', '', $html[1]);
-            $html = str_replace('var pacote = ', '', $html);
-            $html = explode('</script>', $html);
-
-            $response = (string) rtrim(trim(strip_tags($html[0])), ';');
 
             if (!json_decode($response)) {
                 throw new \Exception('Json invalid response');
@@ -173,6 +170,10 @@ class RastreadorDePacotes
 
             $decode = json_decode($response);
 
+            $decode = json_decode(json_encode(array_reverse((array)$decode->tracking[0])));
+
+            $decode->Posicoes = json_decode(json_encode(array_reverse((array)$decode->Posicoes)));
+ 
             $response_obj["code"] = $code;
 
             if (!isset($decode->Posicoes)) {

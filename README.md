@@ -1,10 +1,13 @@
-# SDK Correios Tracking 1.0.9
+# SDK Correios Tracking 1.1.0
 
-[![Latest Stable Version](http://poser.pugx.org/luannsr12/sdkcorreios/v/stable)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![](https://badges.pufler.dev/visits/luannsr12/sdkcorreios)](https://github.com/luannsr12/sdkcorreios)
-[![PHP Version Require](http://poser.pugx.org/luannsr12/sdkcorreios/require/php)](https://packagist.org/packages/luannsr12/sdkcorreios)
-[![Downloads](http://poser.pugx.org/luannsr12/sdkcorreios/downloads)](https://packagist.org/packages/luannsr12/sdkcorreios)
- [![License](https://poser.pugx.org/luannsr12/sdkcorreios/license)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![Latest Stable Version](https://img.shields.io/packagist/v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![Total Downloads](https://img.shields.io/packagist/dt/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![PHP Version](https://img.shields.io/packagist/php-v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![License](https://img.shields.io/packagist/l/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
+[![GitHub Stars](https://img.shields.io/github/stars/luannsr12/sdkcorreios.svg?style=social&label=Star)](https://github.com/luannsr12/sdkcorreios)
+[![GitHub Forks](https://img.shields.io/github/forks/luannsr12/sdkcorreios.svg?style=social&label=Fork)](https://github.com/luannsr12/sdkcorreios)
+[![Contributors](https://img.shields.io/github/contributors/luannsr12/sdkcorreios.svg)](https://github.com/luannsr12/sdkcorreios/graphs/contributors)
+
 
 Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 
@@ -16,15 +19,20 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 ## 🖥️ Sites Disponiveis para busca
 > Caso algum dos sites listados abaixo deseja a remoção do mesmo da biblioteca, favor entrar em contato: luanalvesnsr@gmail.com
 
+```bash
+EncomendaIo, MelhorRastreio, RastreadorDePacotes, RastreamentoCorreio, Muambator, RastreioCorreios, LinkCorreios
+```
+
 | Status  | Site                                                                   | ID                   |
 | :---:   | ---------------------------------------------------------------------- | ---------------------|
 |   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | EncomendaIo         |
 |   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/)                 | MelhorRastreio      |
 |   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | RastreadorDePacotes |
 |   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | RastreamentoCorreio |
-|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
+|   ⚠️   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
 |   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | RastreioCorreios    |
 |   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
+
 
 ## Install Composer
 > Faça download do composer aqui: [Download composer](https://getcomposer.org/download/)

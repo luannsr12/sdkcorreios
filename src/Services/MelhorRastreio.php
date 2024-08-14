@@ -88,7 +88,7 @@ class MelhorRastreio
                     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
                     CURLOPT_CUSTOMREQUEST => 'POST',
                     CURLOPT_POSTFIELDS => '{
-                    "query": "mutation searchParcel ($tracker: TrackerSearchInput!) {\\n  result: searchParcel (tracker: $tracker) {\\n    id\\n    createdAt\\n    updatedAt\\n    lastStatus\\n    lastSyncTracker\\n    pudos {\\n      type\\n      trackingCode\\n    }\\n    trackers {\\n      type\\n      shippingService\\n      trackingCode\\n    }\\n    trackingEvents {\\n      trackerType\\n      trackingCode\\n      createdAt\\n      translatedEventId\\n      originalTitle\\n      to\\n      from\\n      location {\\n        zipcode\\n        address\\n        locality\\n        number\\n        complement\\n        city\\n        state\\n        country\\n      }\\n      additionalInfo\\n    }\\n    pudoEvents {\\n      pudoType\\n      trackingCode\\n      createdAt\\n      translatedEventId\\n      originalTitle\\n      from\\n      to\\n      location {\\n        zipcode\\n        address\\n        locality\\n        number\\n        complement\\n        city\\n        state\\n        country\\n      }\\n      additionalInfo\\n    }\\n  }\\n}",
+                    "query": "mutation searchParcel ($tracker: TrackerSearchInput!) {\n  result: searchParcel (tracker: $tracker) {\n    id\n    createdAt\n    updatedAt\n    lastStatus\n    lastSyncTracker\n    nextSyncTracker\n    pudos {\n      type\n      trackingCode\n    }\n    trackers {\n      type\n      shippingService\n      trackingCode\n    }\n    trackingEvents {\n      trackerType\n      trackingCode\n      createdAt\n      translatedEventId\n      description\n      title\n      to\n      from\n      location {\n        zipcode\n        address\n        locality\n        number\n        complement\n        city\n        state\n        country\n      }\n      additionalInfo\n    }\n    pudoEvents {\n      pudoType\n      trackingCode\n      createdAt\n      translatedEventId\n      description\n      title\n      from\n      to\n      location {\n        zipcode\n        address\n        locality\n        number\n        complement\n        city\n        state\n        country\n      }\n      additionalInfo\n    }\n  }\n}",
                     "variables": {
                         "tracker": {
                             "trackingCode": "' . $code . '",
@@ -111,6 +111,8 @@ class MelhorRastreio
 
             $decode = json_decode($response);
 
+           
+
             if (isset($decode->errors)) {
                 throw new \Exception($decode->errors[0]->details[0]);
             }
@@ -123,18 +125,18 @@ class MelhorRastreio
             $response_obj = $formatResponse->formatTracking;
 
             $response_obj["code"] = $code;
-            $response_obj["status"] = empty($decode->data->result->trackingEvents) ? $this->setStatus("", true) : $this->setStatus($decode->data->result->trackingEvents[0]->originalTitle);
+            $response_obj["status"] = empty($decode->data->result->trackingEvents) ? $this->setStatus("", true) : $this->setStatus($decode->data->result->trackingEvents[0]->title);
             $response_obj["service_provider"] = $this->service_provider;
 
             foreach ($decode->data->result->trackingEvents as $key => $mov) {
-
+ 
                 array_push($response_obj["data"], [
                     "date" => date("m-d-Y H:i:s", strtotime($mov->createdAt)),
                     "to" => $mov->to,
                     "from" => $mov->from,
                     "location" => $mov->location->complement . " - " . $mov->location->city . "/" . $mov->location->state,
-                    "originalTitle" => $mov->originalTitle,
-                    "details" => $mov->originalTitle
+                    "originalTitle" => $mov->title == NULL ? $mov->description : "",
+                    "details" => $mov->description
                 ]);
 
             }
