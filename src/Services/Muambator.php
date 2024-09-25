@@ -1,10 +1,5 @@
 <?php
 
-/*
- *  https://www.muambator.com.br
- *
- */
-
 namespace Sdkcorreios\Services;
 
 use Sdkcorreios\Config\FormatResponse;
@@ -12,172 +7,108 @@ use Sdkcorreios\Config\Status;
 
 class Muambator
 {
-
     private $api_url = "https://www.muambator.com.br/pacotes/{code}/detalhes/";
-
     private $service_provider = "www.muambator.com.br";
 
     private function setStatus($string, $error = false)
     {
-        return $error ? Status::getStatus("") : Status::getStatus($string);
+        return $error ? Status::getStatus("Error") : Status::getStatus($string);
     }
-
 
     public function tracking($codes)
     {
-        try {
+        $codes = $this->objectsCodes($codes);
+        if (!is_array($codes) || count($codes) === 0) {
+            throw new \Exception("No valid tracking codes provided.");
+        }
 
-            $codes = $this->objectsCodes($codes);
-            if (is_array($codes)) {
+        $objs = ["success" => true, "result" => []];
 
-                if (count($codes) > 0) {
-
-                    $objs["success"] = true;
-                    $objs["result"] = [];
-
-                    foreach ($codes as $code) {
-                        $execute = $this->httpGet($code);
-
-                        if ($execute) {
-                            try {
-
-                                array_push($objs["result"], $execute);
-
-                            } catch (\Throwable $th) {
-                                throw new \Exception($th->getMessage());
-                            }
-                        }
-                    }
-
-                    return (object) $objs;
-
-                } else {
-                    throw new \Exception("empty codes");
-                }
-
-            } else {
-                throw new \Exception("Types codes invalid");
+        foreach ($codes as $code) {
+            $execute = $this->httpGet($code);
+            if ($execute) {
+                $objs["result"][] = $execute;
             }
-
-        } catch (\Throwable $th) {
-            throw new \Exception($th->getMessage());
         }
+
+        return (object) $objs;
     }
 
-    private function getCity($string){
-        $city = "";
-        preg_match('/(?:\s-\s|\spara\s)([A-Z\s]+\/[A-Z]+)\b/', $string, $matches);
-        if (isset($matches[1])) {
-            $city = strtoupper($matches[1]);
-        }
-        return $city;
-    }
-
-    private function getElementsByClass(&$parentNode, $tagName, $className)
+    private function getCity($string)
     {
-        $nodes = array();
-
-        $childNodeList = $parentNode->getElementsByTagName($tagName);
-        for ($i = 0; $i < $childNodeList->length; $i++) {
-            $temp = $childNodeList->item($i);
-            if (stripos($temp->getAttribute('class'), $className) !== false) {
-                $nodes[] = $temp;
-            }
-        }
-
-        return $nodes;
+        return preg_match('/(?:\s-\s|\spara\s)([A-Z\s]+\/[A-Z]+)\b/', $string, $matches) ? strtoupper($matches[1]) : '';
     }
 
     public function objectsCodes($codes)
     {
-        $codes = explode(",", $codes);
-        return $codes;
+        if (!is_string($codes) || empty(trim($codes))) {
+            throw new \Exception("Invalid codes format.");
+        }
+        return explode(",", $codes);
     }
 
-    public function httpGet($code) // tracking
+    public function httpGet($code)
     {
+        $curl = curl_init();
+        curl_setopt_array($curl, [
+            CURLOPT_URL => str_replace("{code}", $code, $this->api_url),
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTPHEADER => ['Content-Type: application/json'],
+        ]);
 
-        try {
+        $response = curl_exec($curl);
+        if ($response === false) {
+            throw new \Exception('cURL Error: ' . curl_error($curl));
+        }
+        curl_close($curl);
 
-            $curl = curl_init();
+        return $this->extractTrackingData($this->parseHtml($response), $code);
+    }
 
-            curl_setopt_array(
-                $curl,
-                array(
-                    CURLOPT_URL => str_replace("{code}", $code, $this->api_url),
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'GET',
-                    CURLOPT_POSTFIELDS => '',
-                    CURLOPT_HTTPHEADER => array(
-                        'Content-Type: application/json'
-                    ),
-                )
-            );
+    private function parseHtml($response)
+    {
+        $htmlParts = explode('<div role="tabpanel" class="tab-pane fade in active" id="historico">', $response);
+        if (!isset($htmlParts[1])) {
+            throw new \Exception('Object not found in response');
+        }
+        $htmlParts = explode('</ul>', $htmlParts[1]);
 
-            $response = curl_exec($curl);
-            curl_close($curl);
+        $dom = new \DOMDocument();
+        @$dom->loadHTML('<!DOCTYPE html><meta charset="UTF-8">' . $htmlParts[0]);
 
-            $html = explode('<div role="tabpanel" class="tab-pane fade in active" id="historico">', $response);
-            $html = explode('</ul>', $html[1]);
+        return $dom->getElementsByTagName('li');
+    }
 
-            $dom = new \DOMDocument();
-            $dom->loadHTML('<!DOCTYPE html><meta charset="UTF-8">' . $html[0]);
+    private function extractTrackingData($items, $code)
+    {
+        $lastTitle = "";
+        $formatResponse = new FormatResponse();
+        $response_obj = $formatResponse->formatTracking;
 
-            $items = $dom->getElementsByTagName('li');
- 
-            $lastTitle = "";
+        $response_obj["code"] = $code;
+        $response_obj["service_provider"] = $this->service_provider;
 
-            foreach ($items as $item) {
-                $content = $item->nodeValue;
-                $content = explode("\n", $content);
-                $content = array_values(array_filter($content));
-                $lastTitle = trim(explode("-", $content[1])[0]);
-                break;
-            }
-        
-            $formatResponse = new FormatResponse();
-            $response_obj = $formatResponse->formatTracking;
+        foreach ($items as $item) {
+            $content = array_values(array_filter(explode("\n", $item->nodeValue)));
+            if (!isset($content[1]))
+                continue;
 
-            $response_obj["code"]   = $code;
-            $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle);
-            $response_obj["service_provider"] = $this->service_provider;
-            
-            foreach ($items as $i => $item) {
-              
-                $content = $item->nodeValue;
-                $content = explode("\n", $content);
+            $lastTitle = trim(explode("-", $content[1])[0]);
+            $to = $this->getCity($content[1]);
+            $locale = $this->getCity($content[2]);
+            $date = \DateTime::createFromFormat('d/m/Y H:i:s', $content[0] ?? '')?->format('d-m-Y H:i:s') ?: '';
 
-                $content = array_values(array_filter($content));
-
-                $to     = $this->getCity($content[1]);
-                $locale = $this->getCity($content[2]);
-               
-                $date = isset($content[0]) ? $content[0] : '';
-                $date_format = \DateTime::createFromFormat('d/m/Y H:i:s', $date);
-                $date_format = $date_format ? $date_format->format('d-m-Y H:i:s') : $date;
-
-                array_push($response_obj["data"], [
-                    "date" => $date_format,
-                    "to" => $to,
-                    "from" => $locale,
-                    "location" => $locale,
-                    "originalTitle" => trim(explode("-", $content[1])[0]),
-                    "details" => $content[2]
-                ]);
-
-            }
-
-            return $response_obj;
-
-        } catch (\Exception $e) {
-            throw new \Exception('' . $e->getMessage());
+            $response_obj["data"][] = [
+                "date" => $date,
+                "to" => $to,
+                "from" => $locale,
+                "location" => $locale,
+                "originalTitle" => $lastTitle,
+                "details" => $content[2],
+            ];
         }
 
+        $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle);
+        return $response_obj;
     }
-
 }

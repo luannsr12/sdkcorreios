@@ -1,4 +1,4 @@
-# SDK Correios Tracking 1.1.0
+# SDK Correios Tracking 1.5.0
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
 [![Total Downloads](https://img.shields.io/packagist/dt/luannsr12/sdkcorreios.svg)](https://packagist.org/packages/luannsr12/sdkcorreios)
@@ -22,15 +22,15 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 EncomendaIo, MelhorRastreio, RastreadorDePacotes, RastreamentoCorreio, Muambator, RastreioCorreios, LinkCorreios
 ```
 
-| Status  | Site                                                                   | ID                   |
-| :---:   | ---------------------------------------------------------------------- | ---------------------|
-|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | EncomendaIo         |
-|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/)                 | MelhorRastreio      |
-|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | RastreadorDePacotes |
-|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | RastreamentoCorreio |
-|   ⚠️   | [muambator.com.br](https://www.muambator.com.br/)                       | Muambator           |
-|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | RastreioCorreios    |
-|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | LinkCorreios        |
+| Status  | Site                                                                   | ID    |
+| :---:   | ---------------------------------------------------------------------- | ------|
+|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/) (Recomendado)   | 0001 |
+|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | 0002 |
+|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | 0003 |
+|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | 0004 |
+|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | 0005 |
+|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | 0006 |
+|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | 0007 |
 
 
 ## Install Composer
@@ -51,9 +51,8 @@ linha de comando
    use Sdkcorreios\Config\Services;
    use Sdkcorreios\Methods\Tracking;
 
-   // RastreadorDePacotes / EncomendaIo / MelhorRastreio / etc... 
-   // Confira na tabela os IDs das classes
-   Services::setServiceTracking("MelhorRastreio"); // ID do site de busca
+   // Confira na tabela os IDs dos serviços
+   Services::setServiceTracking(0001); // ID do site de busca
    Services::setDebug(true);
 
    $tracking = new Tracking();
