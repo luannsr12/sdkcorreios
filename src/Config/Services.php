@@ -21,13 +21,13 @@
 
     public static function getServices(){
       $services =  [
-        0001 => 'MelhorRastreio',
-        0002 => 'EncomendaIo',
-        0003 => 'RastreadorDePacotes',
-        0004 => 'RastreamentoCorreio',
-        0005 => 'Muambator',
-        0006 => 'RastreioCorreios',
-        0007 => 'LinkCorreios'
+        '0001' => 'MelhorRastreio',
+        '0002' => 'EncomendaIo',
+        '0003' => 'RastreadorDePacotes',
+        '0004' => 'RastreamentoCorreio',
+        '0005' => 'Muambator',
+        '0006' => 'RastreioCorreios',
+        '0007' => 'LinkCorreios'
       ];
 
       self::$list = $services;
@@ -39,7 +39,7 @@
         return self::$message_error;
     }
 
-    public static function setServiceTracking($service){
+    public static function setServiceTracking(string $service){
 
       $services = self::getServices();
       

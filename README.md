@@ -18,9 +18,6 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 ## 🖥️ Sites Disponiveis para busca
 > Se algum dos sites listados abaixo desejar ser removido da biblioteca, por favor, entre em contato pelo e-mail: luanalvesnsr@gmail.com.
 
-```bash
-EncomendaIo, MelhorRastreio, RastreadorDePacotes, RastreamentoCorreio, Muambator, RastreioCorreios, LinkCorreios
-```
 
 | Status  | Site                                                                   | ID    |
 | :---:   | ---------------------------------------------------------------------- | ------|
@@ -52,7 +49,7 @@ linha de comando
    use Sdkcorreios\Methods\Tracking;
 
    // Confira na tabela os IDs dos serviços
-   Services::setServiceTracking(0001); // ID do site de busca
+   Services::setServiceTracking('0001'); // ID do site de busca
    Services::setDebug(true);
 
    $tracking = new Tracking();
@@ -112,6 +109,22 @@ Response
 }
 
 ```
+
+## Get services
+
+```php
+<?php
+
+  require 'vendor/autoload.php';
+
+  use Sdkcorreios\Config\Services;
+
+  $services = Services::getServices();
+
+  print_r($services);
+
+```
+
 
 Status
 
