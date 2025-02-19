@@ -107,11 +107,10 @@ class LinkCorreios
 
         $action = trim(str_replace('Status:', '', $array[1] ?? ''));
         $dateInfo = explode('|', $array[2] ?? '');
-        $date = trim(str_replace('Data', '', $dateInfo[0] ?? ''));
-        $hour = trim(str_replace('Hora:', '', $dateInfo[1] ?? ''));
-
-        $dateFormat = \DateTime::createFromFormat('d/m/Y H:i:s', "$date $hour:00");
-        $formattedDate = $dateFormat ? $dateFormat->format('d-m-Y H:i:s') : $date;
+        $date = $dateInfo[0] ? trim(explode(':', $dateInfo[0])[1]) : "";  
+        $hour = $dateInfo[1] ? trim(explode(':', $dateInfo[1])[1]) : "";
+        $dateFormat = \DateTime::createFromFormat('d/m/Y H:i', "$date $hour:00");
+        $formattedDate = $dateFormat ? $dateFormat->format('d-m-Y H:i') : $date .' '.$hour;
 
         $location = trim(str_replace(['Origem:', 'Local:'], '', $array[3] ?? ''));
         $location = isset(explode('-', $location)[1]) ? trim(explode('-', $location)[1]) : $location;
@@ -119,9 +118,9 @@ class LinkCorreios
         return [
             "date" => $formattedDate,
             "to" => '',
-            "from" => $location,
-            "location" => $location,
-            "originalTitle" => $action,
+            "from" => strip_tags($location),
+            "location" => strip_tags($location),
+            "originalTitle" => strip_tags($action),
             "details" => trim(str_replace(['</ul>', '</li>'], '', $action)),
         ];
     }

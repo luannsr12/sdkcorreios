@@ -83,21 +83,36 @@ class RastreioCorreios
         $response_obj["service_provider"] = $this->service_provider;
 
         foreach ($items as $item) {
-            $conts = $item->getElementsByTagName('p');
-            if ($conts->length < 4) {
-                throw new \Exception('Insufficient data in tracking item');
+
+            $content = explode("\n", str_replace("\r", "", $item->nodeValue));
+            $content = array_values(array_filter(array_map('trim', ($content))));
+            
+            if (count($content) < 3) {
+                throw new \Exception('Insufficient content found for tracking item.');
             }
 
-            $date_format = \DateTime::createFromFormat('d/m/Y H:i:s', $conts->item(0)->nodeValue)->format('d-m-Y H:i:s');
-            $locale = $this->getCity($conts->item(2)->nodeValue);
+            preg_match('/\d{2}\/\d{2}\/\d{4}/', $content[0], $matches);
+            preg_match('/\d{2}:\d{2}/', $content[0], $matches_hour);
+            
+            if (isset($matches[0]) && isset($matches_hour[0])) {
+            
+                $date = $matches[0] . ' ' . $matches_hour[0];
+                
+            } else {
+                $date = date('d/m/Y H:i');
+            }
+
+         
+            $date_format = \DateTime::createFromFormat('d/m/Y H:i', $date)->format('d-m-Y H:i');
+            $locale = $this->getCity($content[2]);
 
             $response_obj["data"][] = [
                 "date" => $date_format,
                 "to" => '',
                 "from" => $locale,
                 "location" => $locale,
-                "originalTitle" => $conts->item(1)->nodeValue ?? "",
-                "details" => $conts->item(3)->nodeValue ?? "",
+                "originalTitle" => $content[1] ?? "",
+                "details" => $content[3] ?? "",
             ];
         }
 

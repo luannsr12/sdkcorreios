@@ -19,20 +19,22 @@ class RastreadorDePacotes
     {
         if ($indice < 0 || $indice >= count($data)) return "";
         
+     
+
         for ($i = $indice + 1; $i < count($data); $i++) {
-            if ($data[$i]['DetalhesFormatado'] !== $data[$indice]['DetalhesFormatado']) {
-                return trim(explode('para', $data[$i]['DetalhesFormatado'])[1] ?? "");
+            if ($data[$i]->DetalhesFormatado !== $data[$indice]->DetalhesFormatado) {
+                return trim(explode('para', $data[$i]->DetalhesFormatado)[1] ?? "");
             }
         }
 
-        return trim(explode('para', $data[$indice]['DetalhesFormatado'])[1] ?? "");
+        return trim(explode('para', $data[$indice]->DetalhesFormatado)[1] ?? "");
     }
 
     private function getLocaleTo($data, $indice)
     {
         if ($indice < 0 || $indice >= count($data)) return "";
         
-        if (preg_match('/em\s+(.*?)\s+(para\s+(.*?))?$/', $data[$indice]['DetalhesFormatado'], $matches)) {
+        if (preg_match('/em\s+(.*?)\s+(para\s+(.*?))?$/', $data[$indice]->DetalhesFormatado, $matches)) {
             return $matches[3] ?? $matches[1];
         }
 

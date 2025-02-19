@@ -81,34 +81,39 @@ class Muambator
 
     private function extractTrackingData($items, $code)
     {
-        $lastTitle = "";
+        $lastTitle = [];
         $formatResponse = new FormatResponse();
         $response_obj = $formatResponse->formatTracking;
 
         $response_obj["code"] = $code;
         $response_obj["service_provider"] = $this->service_provider;
 
+        $setTitled = false;
+
         foreach ($items as $item) {
             $content = array_values(array_filter(explode("\n", $item->nodeValue)));
             if (!isset($content[1]))
                 continue;
+           
+            
+            $lastTitle_string = trim(explode("-", $content[1])[0]);
+            array_push($lastTitle, $lastTitle_string);
 
-            $lastTitle = trim(explode("-", $content[1])[0]);
             $to = $this->getCity($content[1]);
             $locale = $this->getCity($content[2]);
-            $date = \DateTime::createFromFormat('d/m/Y H:i:s', $content[0] ?? '')?->format('d-m-Y H:i:s') ?: '';
+            $date = \DateTime::createFromFormat('d/m/Y H:i', $content[0] ?? '')?->format('d-m-Y H:i') ?: '';
 
             $response_obj["data"][] = [
                 "date" => $date,
                 "to" => $to,
                 "from" => $locale,
                 "location" => $locale,
-                "originalTitle" => $lastTitle,
+                "originalTitle" => $lastTitle_string,
                 "details" => $content[2],
             ];
         }
-
-        $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle);
+        
+        $response_obj["status"] = empty($items) ? $this->setStatus("", true) : $this->setStatus($lastTitle[0]);
         return $response_obj;
     }
 }

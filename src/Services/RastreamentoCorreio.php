@@ -91,15 +91,20 @@ class RastreamentoCorreio
 
         $tl_items = [];
         foreach ($items as $item) {
-            $content = array_filter(array_map('trim', explode("\n", str_replace("\r", "", $this->getElementsByClass($item, 'div', 'tl-content')[0]->nodeValue))));
+            
+            $content = explode("\n", str_replace("\r", "", $this->getElementsByClass($item, 'div', 'tl-content')[1]->nodeValue));
+            $content = array_values(array_filter(array_map('trim', ($content))));
+
             if (count($content) < 3) {
                 throw new \Exception('Insufficient content found for tracking item.');
             }
 
+            $date = isset($content[3]) ? $content[3] : $content[2];
+            
             $tl_items[] = [
                 'title' => iconv(mb_detect_encoding($content[0]), "UTF-8", $content[0]),
                 'locale' => trim($content[1]),
-                'date' => trim($content[2]),
+                'date' => trim($date),
             ];
         }
 
@@ -115,8 +120,10 @@ class RastreamentoCorreio
         $response_obj["status"] = empty($decode[0]->title) ? $this->setStatus("", true) : $this->setStatus($decode[0]->title);
         $response_obj["service_provider"] = $this->service_provider;
 
+    
         foreach ($decode as $mov) {
-            $date_format = \DateTime::createFromFormat('d/m/Y H:i:s', $mov->date)->format('d-m-Y H:i:s');
+        
+            $date_format = \DateTime::createFromFormat('d/m/Y H:i', trim($mov->date))->format('d-m-Y H:i:s');
             $response_obj["data"][] = [
                 "date" => $date_format,
                 "to" => $mov->to ?? "",
