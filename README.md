@@ -19,15 +19,15 @@ Uma SDK em PHP para rastrear encomendas dos correios gratuitamente.
 > Se algum dos sites listados abaixo desejar ser removido da biblioteca, por favor, entre em contato pelo e-mail: luanalvesnsr@gmail.com.
 
 
-| Status  | Site                                                                   | ID    |
-| :---:   | ---------------------------------------------------------------------- | ------|
-|   ✅   | [melhorrastreio.com.br](https://melhorrastreio.com.br/) (Recomendado)   | 0001 |
-|   ✅   | [encomenda.io](https://encomenda.io/OBJETO)                             | 0002 |
-|   ✅   | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/)   | 0003 |
-|   ✅   | [rastreamentocorreio.com](https://rastreamentocorreio.com/)             | 0004 |
-|   ✅   | [muambator.com.br](https://www.muambator.com.br/)                       | 0005 |
-|   ✅   | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)             | 0006 |
-|   ✅   | [linkcorreios.com.br](https://www.linkcorreios.com.br/)                 | 0007 |
+| Status | Site                                                                  | ID   |
+| :----: | --------------------------------------------------------------------- | ---- |
+|   ✅    | [melhorrastreio.com.br](https://melhorrastreio.com.br/) (Recomendado) | 0001 |
+|   ✅    | [encomenda.io](https://encomenda.io/OBJETO)                           | 0002 |
+|   ✅    | [rastreadordepacotes.com.br](https://www.rastreadordepacotes.com.br/) | 0003 |
+|   ❌    | [rastreamentocorreio.com](https://rastreamentocorreio.com/)           | 0004 |
+|   ✅    | [muambator.com.br](https://www.muambator.com.br/)                     | 0005 |
+|   ✅    | [rastreiocorreios.com.br](https://rastreiocorreios.com.br/)           | 0006 |
+|   ✅    | [linkcorreios.com.br](https://www.linkcorreios.com.br/)               | 0007 |
 
 
 ## Install Composer
@@ -128,27 +128,27 @@ Response
 
 Status
 
-| Status             | Description |
-| -----              | ---------------------------------------------------------  |
-| DELIVERED          | Objeto entregue ao destinatário                            |
-| NOBODYHOME         | Carteiro não atendido                                      |
-| MOVEMENT           | Objeto em transferência - por favor aguarde                |
-| OUT_DELIVERY       | Objeto saiu para entrega ao remetente                      |
-| DELIVERY_FAILURE   | A entrega não pode ser efetuada                            |
-| REFUSED_RECEIVE    | Cliente recusou-se a receber                               |
-| UNKNOWN_CUSTOMER   | Cliente desconhecido no local                              |
-| CUSTOMER_MOVED     | Cliente mudou-se                                           |
-| NO_IDENTIFICATION  | Destinatário não apresentou documento exigido              |
-| NEW_TRY            | Será feita uma nova tentativa de entrega                   |
-| RETURN_SENDER      | Objeto será devolvido ao remetente                         |
-| WAITING_WITHDRAWAL | Objeto aguardando retirada no endereço indicado            |
-| LATE               | Objeto com atraso na entrega                               |
-| RETURN             | Objeto devolvido ao remetente                              |
-| MAILBOX            | Objeto disponível para retirada em Caixa Postal            |
-| NOTFOUND           | Objeto não localizado                                      |
-| LOST               | Objeto Extraviado                                          |
-| POSTED             | Objeto postado                                             |
-| DISTRUBTION        | Objeto recebido na unidade de distribuição                 |
-| RECEIVED_BRAZIL    | Objeto recebido no Brasil                                  |
-| STOLEN             | Objeto roubado                                             |
+| Status             | Description                                     |
+| ------------------ | ----------------------------------------------- |
+| DELIVERED          | Objeto entregue ao destinatário                 |
+| NOBODYHOME         | Carteiro não atendido                           |
+| MOVEMENT           | Objeto em transferência - por favor aguarde     |
+| OUT_DELIVERY       | Objeto saiu para entrega ao remetente           |
+| DELIVERY_FAILURE   | A entrega não pode ser efetuada                 |
+| REFUSED_RECEIVE    | Cliente recusou-se a receber                    |
+| UNKNOWN_CUSTOMER   | Cliente desconhecido no local                   |
+| CUSTOMER_MOVED     | Cliente mudou-se                                |
+| NO_IDENTIFICATION  | Destinatário não apresentou documento exigido   |
+| NEW_TRY            | Será feita uma nova tentativa de entrega        |
+| RETURN_SENDER      | Objeto será devolvido ao remetente              |
+| WAITING_WITHDRAWAL | Objeto aguardando retirada no endereço indicado |
+| LATE               | Objeto com atraso na entrega                    |
+| RETURN             | Objeto devolvido ao remetente                   |
+| MAILBOX            | Objeto disponível para retirada em Caixa Postal |
+| NOTFOUND           | Objeto não localizado                           |
+| LOST               | Objeto Extraviado                               |
+| POSTED             | Objeto postado                                  |
+| DISTRUBTION        | Objeto recebido na unidade de distribuição      |
+| RECEIVED_BRAZIL    | Objeto recebido no Brasil                       |
+| STOLEN             | Objeto roubado                                  |
 

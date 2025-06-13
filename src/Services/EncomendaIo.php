@@ -19,20 +19,25 @@ class EncomendaIo
     {
         $data = json_decode($json, true);
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (json_last_error() !== JSON_ERROR_NONE)
+        {
             throw new \Exception('Erro ao decodificar JSON: ' . json_last_error_msg());
         }
 
-        if (!isset($data['tracking']) || !is_array($data['tracking'])) {
+        if (!isset($data['tracking']) || !is_array($data['tracking']))
+        {
             throw new \Exception('Estrutura de dados de rastreamento inválida');
         }
 
-        if ($indice < 0 || $indice >= count($data['tracking'])) {
+        if ($indice < 0 || $indice >= count($data['tracking']))
+        {
             throw new \Exception("Índice inválido");
         }
 
-        for ($i = $indice + 1; $i < count($data['tracking']); $i++) {
-            if ($data['tracking'][$i]['locale'] !== $data['tracking'][$indice]['locale']) {
+        for ($i = $indice + 1; $i < count($data['tracking']); $i++)
+        {
+            if ($data['tracking'][$i]['locale'] !== $data['tracking'][$indice]['locale'])
+            {
                 return $data['tracking'][$i]['locale'];
             }
         }
@@ -43,17 +48,22 @@ class EncomendaIo
     public function tracking(string $codes): object
     {
         $codes = $this->objectsCodes($codes);
-        if (empty($codes)) {
+        if (empty($codes))
+        {
             throw new \Exception("Tipos de códigos inválidos ou vazio");
         }
 
         $objs = ["success" => true, "result" => []];
 
-        foreach ($codes as $code) {
-            try {
+        foreach ($codes as $code)
+        {
+            try
+            {
                 $execute = $this->httpGet($code);
                 $objs["result"][] = $execute;
-            } catch (\Exception $th) {
+            }
+            catch (\Exception $th)
+            {
                 $objs["result"][] = ["code" => $code, "error" => $th->getMessage()];
             }
         }
@@ -79,16 +89,22 @@ class EncomendaIo
         $curl_error = curl_error($curl);
         curl_close($curl);
 
-        if ($curl_error) {
+        echo $response;
+        die;
+
+        if ($curl_error)
+        {
             throw new \Exception('Erro na requisição CURL: ' . $curl_error);
         }
 
         $decode = json_decode($response);
-        if (json_last_error() !== JSON_ERROR_NONE) {
+        if (json_last_error() !== JSON_ERROR_NONE)
+        {
             throw new \Exception('Erro ao decodificar JSON: ' . json_last_error_msg());
         }
 
-        if (isset($decode->errors)) {
+        if (isset($decode->errors))
+        {
             throw new \Exception($decode->errors[0]->details[0]);
         }
 
@@ -99,7 +115,8 @@ class EncomendaIo
         $response_obj["status"] = empty($decode->data->tracking) ? $this->setStatus("", true) : $this->setStatus($decode->data->tracking[0]->status);
         $response_obj["service_provider"] = $this->service_provider;
 
-        foreach ($decode->data->tracking as $key => $mov) {
+        foreach ($decode->data->tracking as $key => $mov)
+        {
             $from = $this->getLocale(json_encode($decode->data), $key);
             $response_obj["data"][] = [
                 "date" => date("m-d-Y H:i:s", strtotime($mov->date)),
